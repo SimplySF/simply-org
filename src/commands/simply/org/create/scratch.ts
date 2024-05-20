@@ -21,10 +21,12 @@ import {
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Duration } from '@salesforce/kit';
 
+import { ScratchCreateResponse } from '../../../../common/orgTypes.js';
 import { canCreateScratchOrg } from '../../../../common/orgUtils.js';
+import { buildStatus } from '../../../../common/scratchOrgOutput.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
-const messages = Messages.loadMessages('@simplysf/simply-package', 'simply.org.create.scratch');
+const messages = Messages.loadMessages('@simplysf/simply-org', 'simply.org.create.scratch');
 
 export const secretTimeout = 60_000;
 
@@ -179,10 +181,10 @@ export default class OrgCreateScratch extends SfCommand<ScratchCreateResponse> {
     }
 
     if (!targetDevHubOrg) {
-      throw messages.createError('noAvailableDevhubs');
+      throw messages.createError('noAvailableDevhub');
     }
 
-    const baseUrl = targetDevHubOrg.getField(Org.Fields.INSTANCE_URL)?.toString();
+    const baseUrl = targetDevHubOrg.getConnection(flags['api-version']).instanceUrl;
     if (!baseUrl) {
       throw new SfError('No instance URL found for the dev hub');
     }

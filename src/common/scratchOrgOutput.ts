@@ -5,9 +5,9 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { ScratchOrgLifecycleEvent, scratchOrgLifecycleStages } from '@salesforce/core';
 import chalk from 'chalk';
 import { capitalCase } from 'change-case';
+import { ScratchOrgLifecycleEvent, scratchOrgLifecycleStages } from '@salesforce/core';
 import { StandardColors } from '@salesforce/sf-plugins-core';
 
 const boldBlue = (input: string): string => chalk.rgb(81, 176, 235).bold(input);

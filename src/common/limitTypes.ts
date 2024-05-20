@@ -11,11 +11,11 @@ type Limit = {
   remaining: number;
 };
 
-interface LimitResult {
+type LimitResult = {
   [key: string]: {
     Max: number;
     Remaining: number;
   };
-}
+};
 
 export { Limit, LimitResult };
